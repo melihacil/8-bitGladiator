@@ -500,7 +500,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0
-  jumpForce: 0
+  jumpForce: 3
+  moveSpeedMax: 10
+  accelariton: 7
+  deceleration: 7
+  velPower: 0.9
 --- !u!114 &554252996
 MonoBehaviour:
   m_ObjectHideFlags: 0
