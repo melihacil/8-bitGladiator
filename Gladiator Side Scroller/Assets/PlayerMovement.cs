@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     //Time
-    private float lastGroundedTime;
+    [SerializeField] private float lastGroundedTime;
     private float lastJumpTime;
     
 
@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float speedDifference;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
-    private bool jump = false;
+    private bool isJumped = false;
     
     private void Awake()
     {
@@ -44,30 +44,33 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        lastGroundedTime -= Time.deltaTime;
-        if (playerInput.jumpInput)
-            jump = true;
-        else
-            jump = false;
+        lastGroundedTime -= Time.deltaTime * 10;
+
 
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
-            lastGroundedTime = jumpCoyoteTime;
+        {
+            lastGroundedTime = 0.1f;
+            isJumped = false;
+        }
     }
 
     void FixedUpdate()
     {
-        if (lastGroundedTime > 0 && jump)
+
+        if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
         {
             Debug.Log("Jumping");
             Jump();
         }
+
         Move();
 
     }
 
     private void Jump()
     {
-            rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        isJumped = true;
     }
 
     private void Move()

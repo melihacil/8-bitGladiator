@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &59353729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 59353730}
+  m_Layer: 0
+  m_Name: GroundCheckPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &59353730
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 59353729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.498, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 554252991}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &87109959
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +258,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87109959}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.13, y: -6.32, z: 0}
+  m_LocalPosition: {x: 9.76, y: -5.47, z: 0}
   m_LocalScale: {x: 21.5501, y: 5.7544, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -381,10 +412,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554252990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3883777, y: 0.29806107, z: -0.024903711}
+  m_LocalPosition: {x: 1.56, y: 0.29806107, z: -0.024903711}
   m_LocalScale: {x: 1, y: 2.575, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 59353730}
   m_Father: {fileID: 658568372}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -504,6 +536,13 @@ MonoBehaviour:
   deceleration: 7
   velPower: 0.9
   jumpForce: 5
+  jumpCoyoteTime: 0.1
+  groundCheckSize: {x: 0.8, y: 0.05}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  groundCheckPos: {fileID: 59353730}
+  lastGroundedTime: 0
 --- !u!114 &554252996
 MonoBehaviour:
   m_ObjectHideFlags: 0
