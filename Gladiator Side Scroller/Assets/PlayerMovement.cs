@@ -27,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
 
     //Time
     [SerializeField] private float lastGroundedTime;
-    private float lastJumpTime;
+    //private float lastJumpTime;
     
 
     private float speed;
@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private bool isJumped = false;
-
+    private bool readyDoubleJump = false;
+    private bool isGrounded = false;
 
     private void Awake()
     {
@@ -56,6 +57,8 @@ public class PlayerMovement : MonoBehaviour
         {
             lastGroundedTime = 0.1f;
             isJumped = false;
+            readyDoubleJump = true;
+            isGrounded = true;
         }
     }
 
@@ -78,6 +81,14 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (!playerInput.jumpInput && isJumped)
             OnJumpUp();
+        
+        
+        
+        if (playerInput.jumpInput && readyDoubleJump && !isGrounded)
+        {
+            Jump();
+            readyDoubleJump=false;
+        }
 
         Move();
 
@@ -85,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        lastJumpTime = 0;
+        //lastJumpTime = 0;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isJumped = true;
     }
