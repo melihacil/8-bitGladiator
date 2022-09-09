@@ -10,36 +10,37 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
     [SerializeField] private float velPower;
+    private float speed;
+    private float targetSpeed;
+    private float accelerationRate;
+    private float speedDifference;
+
     [Header("Jump Forces")]
+
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCoyoteTime;
     [SerializeField] private float jumpCutMultiplier;
     [SerializeField] private float fallGravityMultiplier;
     private float gravityScale;
+    private bool readyDoubleJump = false;
+    private bool isGrounded = false;
+    private bool jumpButtonReleased = false;
+    private bool isJumped = false;
 
 
     [Header("Checking Measures")]
+
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f,0.5f);
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private Transform groundCheckPos;
 
-
-
     //Time
     [SerializeField] private float lastGroundedTime;
     //private float lastJumpTime;
-    
-
-    private float speed;
-    private float targetSpeed;
-    private float accelerationRate;
-    private float speedDifference;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
-    private bool isJumped = false;
-    [SerializeField] private bool readyDoubleJump = false;
-    [SerializeField] private bool isGrounded = false;
-    [SerializeField] private bool jumpButtonReleased = false;
+
+
     
 
 
@@ -76,21 +77,21 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = gravityScale;
         }
 
-            if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
-            {
-                //Debug.Log("Jumping");
-                Jump(1);
-                readyDoubleJump = true;
-            }
+        if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
+        {
+            //Debug.Log("Jumping");
+            Jump(1);
+            readyDoubleJump = true;
+        }
         
-            if (playerInput.jumpInput && readyDoubleJump && !isGrounded && jumpButtonReleased)
-            {
+        if (playerInput.jumpInput && readyDoubleJump && !isGrounded && jumpButtonReleased)
+        {
                 
-                Debug.Log("Double Jumping");
-                Jump(2);
-                readyDoubleJump = false;
-                jumpButtonReleased = false;
-            }
+            Debug.Log("Double Jumping");
+            Jump(2);
+            readyDoubleJump = false;
+            jumpButtonReleased = false;
+        }
         
         if (!playerInput.jumpInput && isJumped)
         {
