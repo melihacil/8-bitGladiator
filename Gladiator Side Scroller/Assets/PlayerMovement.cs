@@ -59,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
             isJumped = false;
             readyDoubleJump = true;
             isGrounded = true;
+            //jumpButtonReleased = false;
         }
     }
 
@@ -80,12 +81,14 @@ public class PlayerMovement : MonoBehaviour
             Jump();
         }
         else if (!playerInput.jumpInput && isJumped)
-            OnJumpUp();
-        
-        
-        
-        if (playerInput.jumpInput && readyDoubleJump && !isGrounded)
         {
+            OnJumpUp();
+
+        }
+        
+        if (playerInput.jumpInput && readyDoubleJump && !isGrounded )
+        {
+            Debug.Log("Double Jumping");
             Jump();
             readyDoubleJump=false;
         }
@@ -98,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //lastJumpTime = 0;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        isGrounded=false;
         isJumped = true;
     }
 
