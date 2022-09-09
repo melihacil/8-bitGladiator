@@ -37,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private bool isJumped = false;
-    private bool readyDoubleJump = false;
-    private bool isGrounded = false;
+    [SerializeField] private bool readyDoubleJump = false;
+    [SerializeField] private bool isGrounded = false;
 
     private void Awake()
     {
