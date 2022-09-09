@@ -1,21 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 
 [RequireComponent(typeof(PlayerInput))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float speed;
-    [SerializeField] private float jumpForce;
-    private float targetSpeed;
-
+    
     [SerializeField] private float moveSpeedMax;
-    [SerializeField] private float accelariton;
+    [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
     [SerializeField] private float velPower;
+    [Header("Jump Forces")]
+    [SerializeField] private float jumpForce;
 
-
+    private float speed;
+    private float targetSpeed;
     private float accelerationRate;
     private float speedDifference;
     private PlayerInput playerInput;
@@ -26,13 +25,6 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>(); 
         rb = GetComponent<Rigidbody2D>();
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
 
@@ -58,15 +50,12 @@ public class PlayerMovement : MonoBehaviour
         //Calculate the difference between current velocity and desired velocity
         speedDifference = targetSpeed - rb.velocity.x;
         //Change acceleration rate depending on situation 
-        accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? accelariton: deceleration;
-
-
+        accelerationRate = (Mathf.Abs(targetSpeed) > 0.01f) ? acceleration: deceleration;
+        
         speed = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, velPower) * Mathf.Sign(speedDifference);
 
 
         rb.AddForce(Vector2.right * speed);
-
-
 
     }
 }
