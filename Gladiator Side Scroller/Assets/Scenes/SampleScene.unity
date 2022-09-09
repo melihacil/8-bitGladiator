@@ -277,6 +277,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420030}
+  - component: {fileID: 519420033}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -350,9 +351,9 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 71.9
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 7.442651
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -383,6 +384,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &519420033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8124e17a2139985409c0fe4ecc3ef437, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 0, y: 0, z: 0}
+  player: {fileID: 554252991}
 --- !u!1 &554252990
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,13 +553,15 @@ MonoBehaviour:
   jumpForce: 10
   jumpCoyoteTime: 0.1
   jumpCutMultiplier: 0.5
-  fallGravityMultiplier: 0
+  fallGravityMultiplier: 2
   groundCheckSize: {x: 0.8, y: 0.05}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
   groundCheckPos: {fileID: 59353730}
   lastGroundedTime: 0
+  readyDoubleJump: 0
+  isGrounded: 0
 --- !u!114 &554252996
 MonoBehaviour:
   m_ObjectHideFlags: 0
