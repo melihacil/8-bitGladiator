@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     private bool isJumped = false;
     [SerializeField] private bool readyDoubleJump = false;
     [SerializeField] private bool isGrounded = false;
+    [SerializeField] private bool jumpButtonReleased = false;
+    
+
 
     private void Awake()
     {
@@ -50,21 +53,20 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
 
-        lastGroundedTime -= Time.deltaTime * 10;
+        lastGroundedTime -= Time.deltaTime;
         isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
 
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
         {
-            lastGroundedTime = 0.1f;
+            lastGroundedTime = jumpCoyoteTime;
             isJumped = false;
-            //readyDoubleJump = true;
-            //jumpButtonReleased = false;
+            jumpButtonReleased = false;
+            readyDoubleJump = false;
         }
     }
 
     void FixedUpdate()
     {
-
         if(rb.velocity.y < 0)
         {
             rb.gravityScale = gravityScale * fallGravityMultiplier;
@@ -73,31 +75,35 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = gravityScale;
         }
+
+            if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
+            {
+                //Debug.Log("Jumping");
+                Jump(1);
+                readyDoubleJump = true;
+            }
         
-        if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
+            if (playerInput.jumpInput && readyDoubleJump && !isGrounded && jumpButtonReleased)
+            {
+                
+                Debug.Log("Double Jumping");
+                Jump(2);
+                readyDoubleJump = false;
+                jumpButtonReleased = false;
+            }
+        
+        if (!playerInput.jumpInput && isJumped)
         {
-            Debug.Log("Jumping");
-            Jump();
-        }
-        else if (!playerInput.jumpInput && isJumped)
-        {
-            readyDoubleJump = true;
+            if (readyDoubleJump)
+                jumpButtonReleased = true;
             OnJumpUp();
-
         }
-        
-        if (playerInput.jumpInput && readyDoubleJump && !isGrounded )
-        {
-            Debug.Log("Double Jumping");
-            Jump();
-            readyDoubleJump=false;
-        }
-
+       
         Move();
 
     }
 
-    private void Jump()
+    private void Jump(float multiplier)
     {
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isGrounded=false;
