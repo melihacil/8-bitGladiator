@@ -535,8 +535,10 @@ MonoBehaviour:
   acceleration: 7
   deceleration: 7
   velPower: 0.9
-  jumpForce: 5
+  jumpForce: 10
   jumpCoyoteTime: 0.1
+  jumpCutMultiplier: 0.5
+  fallGravityMultiplier: 0
   groundCheckSize: {x: 0.8, y: 0.05}
   groundLayer:
     serializedVersion: 2
