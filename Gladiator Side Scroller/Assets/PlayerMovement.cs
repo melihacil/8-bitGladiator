@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Jump Forces")]
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCoyoteTime;
-
+    [SerializeField] private float jumpCutMultiplier;
 
     [Header("Checking Measures")]
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f,0.5f);
@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rb;
     private bool isJumped = false;
-    
+
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>(); 
@@ -62,16 +63,27 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("Jumping");
             Jump();
         }
-
+        if (!playerInput.jumpInput && isJumped)
+            OnJumpUp();
         Move();
 
     }
 
     private void Jump()
     {
+        lastJumpTime = 0;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isJumped = true;
     }
+
+    public void OnJumpUp()
+    {
+        if (rb.velocity.y > 0)
+        {
+            rb.AddForce(Vector2.down * rb.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
+        }
+    }
+
 
     private void Move()
     {
