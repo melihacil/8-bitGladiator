@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
         lastGroundedTime -= Time.deltaTime;
         isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
 
-        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
+        if (isGrounded)
         {
             lastGroundedTime = jumpCoyoteTime;
             isJumped = false;
