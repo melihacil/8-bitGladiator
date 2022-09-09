@@ -12,6 +12,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float velPower;
     [Header("Jump Forces")]
     [SerializeField] private float jumpForce;
+    [SerializeField] private float jumpCoyoteTime;
+
+
+    [Header("Checking Measures")]
+    [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f,0.5f);
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private Transform groundCheckPos;
+
+
+
+    //Time
+    private float lastGroundedTime;
+    private float lastJumpTime;
+    
 
     private float speed;
     private float targetSpeed;
@@ -19,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
     private float speedDifference;
     private PlayerInput playerInput;
     private Rigidbody2D rb;
-
+    private bool jump = false;
     
     private void Awake()
     {
@@ -27,20 +41,33 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
 
+        lastGroundedTime -= Time.deltaTime;
+        if (playerInput.jumpInput)
+            jump = true;
+        else
+            jump = false;
+
+        if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
+            lastGroundedTime = jumpCoyoteTime;
+    }
 
     void FixedUpdate()
     {
+        if (lastGroundedTime > 0 && jump)
+        {
+            Debug.Log("Jumping");
+            Jump();
+        }
         Move();
-        Jump();
+
     }
 
     private void Jump()
     {
-        if (playerInput.jumpInput)
-        {
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        }
     }
 
     private void Move()
