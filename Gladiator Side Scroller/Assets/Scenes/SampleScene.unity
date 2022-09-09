@@ -551,7 +551,7 @@ MonoBehaviour:
   deceleration: 7
   velPower: 0.9
   jumpForce: 10
-  jumpCoyoteTime: 0.1
+  jumpCoyoteTime: 0.2
   jumpCutMultiplier: 0.5
   fallGravityMultiplier: 2
   groundCheckSize: {x: 0.8, y: 0.05}
@@ -562,6 +562,7 @@ MonoBehaviour:
   lastGroundedTime: 0
   readyDoubleJump: 0
   isGrounded: 0
+  jumpButtonReleased: 0
 --- !u!114 &554252996
 MonoBehaviour:
   m_ObjectHideFlags: 0
