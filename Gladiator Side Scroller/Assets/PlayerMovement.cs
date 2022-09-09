@@ -51,14 +51,13 @@ public class PlayerMovement : MonoBehaviour
     {
 
         lastGroundedTime -= Time.deltaTime * 10;
-
+        isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
 
         if (Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer))
         {
             lastGroundedTime = 0.1f;
             isJumped = false;
-            readyDoubleJump = true;
-            isGrounded = true;
+            //readyDoubleJump = true;
             //jumpButtonReleased = false;
         }
     }
@@ -74,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = gravityScale;
         }
-
+        
         if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
         {
             Debug.Log("Jumping");
@@ -82,6 +81,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (!playerInput.jumpInput && isJumped)
         {
+            readyDoubleJump = true;
             OnJumpUp();
 
         }
@@ -99,7 +99,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump()
     {
-        //lastJumpTime = 0;
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isGrounded=false;
         isJumped = true;
@@ -125,8 +124,10 @@ public class PlayerMovement : MonoBehaviour
         
         speed = Mathf.Pow(Mathf.Abs(speedDifference) * accelerationRate, velPower) * Mathf.Sign(speedDifference);
 
-
+        //Adding the force in the x axis (speed is neg if player moving towards left
         rb.AddForce(Vector2.right * speed);
+
+       //transform.localScale
 
     }
 }

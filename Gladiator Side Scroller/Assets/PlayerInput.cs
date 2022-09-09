@@ -15,7 +15,8 @@ public class PlayerInput : MonoBehaviour
 
         //Horizontal a - d (-1) - 0 - 1
         movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        jumpInput = Input.GetButtonDown("Jump") || Input.GetButton("Jump");
+        //jumpInput = Input.GetButtonDown("Jump") || Input.GetButton("Jump");
 
+        jumpInput = Input.GetKeyDown(KeyCode.Space) || Input.GetKey(KeyCode.Space);
     }
 }
