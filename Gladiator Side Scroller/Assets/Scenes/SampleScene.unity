@@ -434,7 +434,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &554252994
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -499,12 +499,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887c87591e03eac44886329583613d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  jumpForce: 3
   moveSpeedMax: 10
-  accelariton: 7
+  acceleration: 7
   deceleration: 7
   velPower: 0.9
+  jumpForce: 5
 --- !u!114 &554252996
 MonoBehaviour:
   m_ObjectHideFlags: 0
