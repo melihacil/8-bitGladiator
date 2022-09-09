@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpCoyoteTime;
     [SerializeField] private float jumpCutMultiplier;
+    [SerializeField] private float fallGravityMultiplier;
+    private float gravityScale;
+
 
     [Header("Checking Measures")]
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f,0.5f);
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>(); 
         rb = GetComponent<Rigidbody2D>();
+        gravityScale = rb.gravityScale;
     }
 
     private void Update()
@@ -58,13 +62,23 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
+        if(rb.velocity.y < 0)
+        {
+            rb.gravityScale = gravityScale * fallGravityMultiplier;
+        }
+        else
+        {
+            rb.gravityScale = gravityScale;
+        }
+
         if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
         {
             Debug.Log("Jumping");
             Jump();
         }
-        if (!playerInput.jumpInput && isJumped)
+        else if (!playerInput.jumpInput && isJumped)
             OnJumpUp();
+
         Move();
 
     }
