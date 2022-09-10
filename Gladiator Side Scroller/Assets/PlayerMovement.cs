@@ -166,15 +166,15 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetTrigger("Attack" + attackState);
             attackButtonReleased = false;
-            Debug.DrawRay(attackPos.position, transform.TransformDirection(Vector2.right) * 4f, Color.red);
-            RaycastHit2D hit = Physics2D.Raycast(attackPos.position, transform.TransformDirection(Vector2.right), 4f);
+            Debug.DrawRay(attackPos.position, transform.TransformDirection(Vector2.right) * 3f, Color.red);
+            RaycastHit2D hit = Physics2D.Raycast(attackPos.position, transform.TransformDirection(Vector2.right), 3f);
             if (hit)
             {
                 //Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.layer == 7 )
                 {
                     Debug.Log("Attacking = " + hit.collider.gameObject.name);
-                    hit.collider.gameObject.GetComponent<BasicEnemyScript>().DamageBackwards(transform);
+                    hit.collider.gameObject.GetComponent<EnemyScript>().DamageBackwards(transform);
                 }
             }
 
