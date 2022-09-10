@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
                 if (hit.collider.gameObject.layer == 7 )
                 {
                     Debug.Log("Attacking = " + hit.collider.gameObject.name);
-                    hit.collider.gameObject.GetComponent<BasicEnemyScript>().DamageBackwards();
+                    hit.collider.gameObject.GetComponent<BasicEnemyScript>().DamageBackwards(transform);
                 }
             }
 
