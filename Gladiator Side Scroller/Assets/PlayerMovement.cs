@@ -179,7 +179,7 @@ public class PlayerMovement : MonoBehaviour
 
 
             readyToAttack = false;
-            Invoke(nameof(ResetAttack), 0.5f);
+            Invoke(nameof(ResetAttack), 0.2f);
         }
     }
 
