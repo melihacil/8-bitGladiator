@@ -17,6 +17,6 @@ public class BasicEnemyScript : MonoBehaviour
     public void DamageBackwards()
     {
         Debug.Log("Damaging");
-        rb.AddForce(Vector2.right * 5,ForceMode2D.Impulse);
+        rb.AddForce(Vector2.right * 3,ForceMode2D.Impulse);
     }
 }

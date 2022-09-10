@@ -133,11 +133,10 @@ public class PlayerMovement : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 4f);
             if (hit)
             {
-                Debug.Log(hit.collider.gameObject.name);
+                //Debug.Log(hit.collider.gameObject.name);
                 if (hit.collider.gameObject.layer == 7 )
                 {
-                    //Working
-                    Debug.Log(hit.collider.gameObject.name);
+                    Debug.Log("Attacking = " + hit.collider.gameObject.name);
                     hit.collider.gameObject.GetComponent<BasicEnemyScript>().DamageBackwards();
                 }
             }
