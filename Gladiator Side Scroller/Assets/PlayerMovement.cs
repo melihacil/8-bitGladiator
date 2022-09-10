@@ -40,7 +40,9 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInput playerInput;
     private Rigidbody2D rb;
 
-
+    [Header("Attack Values")]
+    [SerializeField] private bool readyToAttack = true;
+    [SerializeField] private bool attackButtonReleased = true;
     
 
 
@@ -64,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
             jumpButtonReleased = false;
             readyDoubleJump = false;
         }
+        if (!playerInput.attackInput)
+            attackButtonReleased = true;
     }
 
     void FixedUpdate()
@@ -99,8 +103,9 @@ public class PlayerMovement : MonoBehaviour
                 jumpButtonReleased = true;
             OnJumpUp();
         }
-       
         Move();
+        Attack();
+
 
     }
 
@@ -119,6 +124,23 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void Attack()
+    {
+        if (playerInput.attackInput && readyToAttack && attackButtonReleased)
+        {
+            attackButtonReleased = false;
+            Debug.Log("Attacking");
+            readyToAttack = false;
+            Invoke(nameof(ResetAttack), 0.5f);
+        }
+    }
+
+
+
+    private void ResetAttack()
+    {
+        readyToAttack = true;
+    }
 
     private void Move()
     {
