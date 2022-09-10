@@ -668,9 +668,11 @@ MonoBehaviour:
   groundCheckSize: {x: 0.8, y: 0.05}
   groundLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
   groundCheckPos: {fileID: 59353730}
   lastGroundedTime: 0
+  readyToAttack: 1
+  attackButtonReleased: 1
 --- !u!114 &554252996
 MonoBehaviour:
   m_ObjectHideFlags: 0
