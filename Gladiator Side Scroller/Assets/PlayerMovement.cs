@@ -117,9 +117,9 @@ public class PlayerMovement : MonoBehaviour
         
         if (playerInput.jumpInput && readyDoubleJump && !isGrounded && jumpButtonReleased)
         {
-                
+            rb.velocity = new Vector3(rb.velocity.x, 0, 0);   
             Debug.Log("Double Jumping");
-            Jump(2);
+            Jump(3);
             readyDoubleJump = false;
             jumpButtonReleased = false;
         }
