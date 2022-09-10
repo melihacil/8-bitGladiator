@@ -130,9 +130,10 @@ public class PlayerMovement : MonoBehaviour
         {
             attackButtonReleased = false;
             Debug.Log("Attacking");
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 4f);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.right) * 4f, Color.red);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 4f);
 
-            if (hit.collider != null)
+            if (hit)
             {
                 if (hit.collider.gameObject.layer == 7 )
                 {
