@@ -129,15 +129,14 @@ public class PlayerMovement : MonoBehaviour
         if (playerInput.attackInput && readyToAttack && attackButtonReleased)
         {
             attackButtonReleased = false;
-            Debug.Log("Attacking");
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.right) * 4f, Color.red);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 4f);
-
             if (hit)
             {
                 if (hit.collider.gameObject.layer == 7 )
                 {
-                    Debug.Log("Hit enemy");
+                    //Working
+                    //Debug.Log("Hit enemy");
                 }
             }
 
