@@ -47,12 +47,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool readyToAttack = true;
     [SerializeField] private bool attackButtonReleased = true;
     
-
+    [Header("Animator")]
+    private Animator animator;
+    private float delayToIdle = 0.0f;
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>(); 
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
         gravityScale = rb.gravityScale;
     }
 
@@ -63,10 +66,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+        //Running
         if (playerInput.movementInput.x != 0)
+        {
             CheckDirection(playerInput.movementInput.x > 0);
+            animator.SetInteger("AnimState", 1);
+        }
+        else
+        {
+            //Preventing flickering
+            delayToIdle -= Time.deltaTime;
+            if (delayToIdle < 0.0f)
+                animator.SetInteger("AnimState", 0);
+        }
         lastGroundedTime -= Time.deltaTime;
         isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
+        animator.SetBool("Grounded", isGrounded);
 
         if (isGrounded)
         {
@@ -84,6 +99,7 @@ public class PlayerMovement : MonoBehaviour
         if(rb.velocity.y < 0)
         {
             rb.gravityScale = gravityScale * fallGravityMultiplier;
+            animator.SetFloat("AirSpeedY", rb.velocity.y);
         }
         else
         {
@@ -121,6 +137,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(float multiplier)
     {
+
+        animator.SetTrigger("Jump");
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isGrounded=false;
         isJumped = true;
@@ -134,12 +152,20 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private int attackState = 1;
+
     private void Attack()
     {
         if (playerInput.attackInput && readyToAttack && attackButtonReleased)
         {
+            attackState++;
+
+            if (attackState > 3)
+                attackState = 1;
+
+            animator.SetTrigger("Attack" + attackState);
             attackButtonReleased = false;
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector2.right) * 4f, Color.red);
+            Debug.DrawRay(transform.position, Vector2.right * 4f, Color.red);
             RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.TransformDirection(Vector2.right), 4f);
             if (hit)
             {
@@ -166,6 +192,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
+
         //Calculate the direction 
         targetSpeed = playerInput.movementInput.x * moveSpeedMax;
         //Calculate the difference between current velocity and desired velocity
