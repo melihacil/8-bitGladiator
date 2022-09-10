@@ -130,6 +130,17 @@ public class PlayerMovement : MonoBehaviour
         {
             attackButtonReleased = false;
             Debug.Log("Attacking");
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, 4f);
+
+            if (hit.collider != null)
+            {
+                if (hit.collider.gameObject.layer == 7 )
+                {
+                    Debug.Log("Hit enemy");
+                }
+            }
+
+
             readyToAttack = false;
             Invoke(nameof(ResetAttack), 0.5f);
         }
