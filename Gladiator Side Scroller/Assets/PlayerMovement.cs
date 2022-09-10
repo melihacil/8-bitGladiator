@@ -56,9 +56,15 @@ public class PlayerMovement : MonoBehaviour
         gravityScale = rb.gravityScale;
     }
 
+    private void Start()
+    {
+        playerForward = true;
+    }
+
     private void Update()
     {
-
+        if (playerInput.movementInput.x != 0)
+            CheckDirection(playerInput.movementInput.x > 0);
         lastGroundedTime -= Time.deltaTime;
         isGrounded = Physics2D.OverlapBox(groundCheckPos.position, groundCheckSize, 0, groundLayer);
 
@@ -83,11 +89,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = gravityScale;
         }
-        if (playerInput.movementInput.x != 0)
-            
-
-
-
+       
 
         if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
         {
@@ -192,9 +194,18 @@ public class PlayerMovement : MonoBehaviour
 
     private void TurnFunction()
     {
+        Debug.Log("Turning");
+
+        
+        /*
+         * 
+         * If there is any problem with transform.forward then use this code bloc
+         * transform.localScale.x can be used to rotate attack direction
         Vector3 scale = transform.localScale;
-        scale.x = scale.x * -1;
+        scale.x *= -1;
         transform.localScale = scale;
+        */
+        transform.forward *= -1;
         playerForward = !playerForward;
     }
 
