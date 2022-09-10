@@ -14,6 +14,9 @@ public class PlayerMovement : MonoBehaviour
     private float targetSpeed;
     private float accelerationRate;
     private float speedDifference;
+    private bool playerForward = true;
+
+
 
     [Header("Jump Forces")]
 
@@ -80,6 +83,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = gravityScale;
         }
+        if (playerInput.movementInput.x != 0)
+            
+
+
+
 
         if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
         {
@@ -171,4 +179,24 @@ public class PlayerMovement : MonoBehaviour
        //transform.localScale
 
     }
+
+
+    private void CheckDirection(bool playerDirection)
+    {
+        if (playerDirection != playerForward)
+        {
+            TurnFunction();
+        }
+    }
+
+
+    private void TurnFunction()
+    {
+        Vector3 scale = transform.localScale;
+        scale.x = scale.x * -1;
+        transform.localScale = scale;
+        playerForward = !playerForward;
+    }
+
+
 }
