@@ -31,9 +31,6 @@ public class EnemyScript : MonoBehaviour
         if (GetComponentInParent<EnemyStats>().isDead)
             animator.SetTrigger("Death");
 
-
-        
-
     }
 
     private void FixedUpdate()
