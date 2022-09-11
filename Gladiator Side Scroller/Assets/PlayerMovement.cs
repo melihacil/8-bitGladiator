@@ -97,10 +97,11 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(rb.velocity.y < 0)
+        animator.SetFloat("AirSpeedY", rb.velocity.y);
+        if (rb.velocity.y < 0)
         {
             rb.gravityScale = gravityScale * fallGravityMultiplier;
-            animator.SetFloat("AirSpeedY", rb.velocity.y);
+            
         }
         else
         {
@@ -117,7 +118,8 @@ public class PlayerMovement : MonoBehaviour
         
         if (playerInput.jumpInput && readyDoubleJump && !isGrounded && jumpButtonReleased)
         {
-            rb.velocity = new Vector3(rb.velocity.x, 0, 0);   
+            rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+            animator.SetInteger("AnimState", 4);
             Debug.Log("Double Jumping");
             Jump(3);
             readyDoubleJump = false;
@@ -138,7 +140,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Jump(float multiplier)
     {
-
         animator.SetTrigger("Jump");
         rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         isGrounded=false;
@@ -222,9 +223,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void TurnFunction()
     {
-        Debug.Log("Turning");
-
-        
         /*
          * 
          * If there is any problem with transform.forward then use this code bloc

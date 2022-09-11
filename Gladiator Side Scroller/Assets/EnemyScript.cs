@@ -6,10 +6,18 @@ public class EnemyScript : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private LayerMask playerLayerMask;
 
 
+
+    [Header("Enemy Movement")]
+    [SerializeField] private float moveSpeed;
     [Header("Animation Variables")]
     private Animator animator;
+
+
+
+    private bool isPlayerInSightRange;
     public void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -22,6 +30,25 @@ public class EnemyScript : MonoBehaviour
     {
         if (GetComponentInParent<EnemyStats>().isDead)
             animator.SetTrigger("Death");
+
+
+        
+
+    }
+
+    private void FixedUpdate()
+    {
+        isPlayerInSightRange = Physics2D.OverlapCircle(rb.position, 14f, playerLayerMask);
+        if (isPlayerInSightRange)
+        {
+            animator.SetInteger("AnimState", 2);
+            Debug.Log("Player in sight range");
+            rb.AddForce(Vector2.right * moveSpeed, ForceMode2D.Force);
+        }
+        else
+        {
+            animator.SetInteger("AnimState", 0);
+        }
     }
     public void DamageBackwards(Transform player)
     {

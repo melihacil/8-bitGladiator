@@ -16,5 +16,6 @@ public class HealthScript : MonoBehaviour
     public void UpdateSlider(float value)
     {
         m_Slider.value = value;
+        //m_Slider.
     }
 }
