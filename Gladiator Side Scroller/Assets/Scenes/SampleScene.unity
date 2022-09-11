@@ -259,7 +259,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7339897578851640932, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.788234
+      value: 11.07
       objectReference: {fileID: 0}
     - target: {fileID: 7339897578851640932, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_LocalPosition.y
@@ -297,13 +297,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_FlipY
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -697098749
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_RenderingLayerMask
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897578889832466, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 7339897578889832558, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7339897578889832559, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.31
+      value: -23.37
       objectReference: {fileID: 0}
     - target: {fileID: 7339897578889832559, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_LocalPosition.y
@@ -833,6 +865,14 @@ PrefabInstance:
     - target: {fileID: 1175532819009442731, guid: 5d397c9df13f5fc458ae4bec8f7aa7d1, type: 3}
       propertyPath: m_Name
       value: Enemy-Bandit-1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343788081269007437, guid: 5d397c9df13f5fc458ae4bec8f7aa7d1, type: 3}
+      propertyPath: m_SortingLayer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1343788081269007437, guid: 5d397c9df13f5fc458ae4bec8f7aa7d1, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -697098749
       objectReference: {fileID: 0}
     - target: {fileID: 2856520808143785402, guid: 5d397c9df13f5fc458ae4bec8f7aa7d1, type: 3}
       propertyPath: m_AnchorMax.x

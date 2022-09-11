@@ -50,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Animator")]
     private Animator animator;
+    //[SerializeField] private Animator slideAnimator;
     private float delayToIdle = 0.0f;
 
     private void Awake()
@@ -86,6 +87,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (isGrounded)
         {
+            //Add landing effect here
+            if (isJumped)
+            {
+
+            }
+
             lastGroundedTime = jumpCoyoteTime;
             isJumped = false;
             jumpButtonReleased = false;
@@ -98,8 +105,10 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         animator.SetFloat("AirSpeedY", rb.velocity.y);
+        //Block for checking gravity
         if (rb.velocity.y < 0)
         {
+            //After starting to fall it applies multiplier to improve movement
             rb.gravityScale = gravityScale * fallGravityMultiplier;
             
         }
@@ -108,16 +117,20 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = gravityScale;
         }
        
-
+        //Jumping block 
         if (lastGroundedTime > 0 && playerInput.jumpInput && !isJumped)
         {
-            //Debug.Log("Jumping");
+            //Jumping effect should be added here 
+           
             Jump(1);
             readyDoubleJump = true;
         }
         
+        //Double jumping block
         if (playerInput.jumpInput && readyDoubleJump && !isGrounded && jumpButtonReleased)
         {
+            //Double jumping effect  will be added here
+
             rb.velocity = new Vector3(rb.velocity.x, 0, 0);
             animator.SetInteger("AnimState", 4);
             Debug.Log("Double Jumping");
@@ -126,6 +139,7 @@ public class PlayerMovement : MonoBehaviour
             jumpButtonReleased = false;
         }
         
+        //Gets ready for double jump after jumping and releasing jump button
         if (!playerInput.jumpInput && isJumped)
         {
             if (readyDoubleJump)
@@ -134,8 +148,6 @@ public class PlayerMovement : MonoBehaviour
         }
         Move();
         Attack();
-
-
     }
 
     private void Jump(float multiplier)
@@ -185,8 +197,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
-
     private void ResetAttack()
     {
         readyToAttack = true;
@@ -195,7 +205,7 @@ public class PlayerMovement : MonoBehaviour
     private void Move()
     {
 
-        //Calculate the direction 
+        //Calculate the direction
         targetSpeed = playerInput.movementInput.x * moveSpeedMax;
         //Calculate the difference between current velocity and desired velocity
         speedDifference = targetSpeed - rb.velocity.x;
@@ -206,9 +216,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Adding the force in the x axis (speed is neg if player moving towards left
         rb.AddForce(Vector2.right * speed);
-
-       //transform.localScale
-
     }
 
 
