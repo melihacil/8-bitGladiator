@@ -18,7 +18,11 @@ public class EnemyScript : MonoBehaviour
     }
 
 
-
+    public void Update()
+    {
+        if (GetComponentInParent<EnemyStats>().isDead)
+            animator.SetTrigger("Death");
+    }
     public void DamageBackwards(Transform player)
     {
         Debug.Log("Damaging");

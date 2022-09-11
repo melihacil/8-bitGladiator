@@ -9,7 +9,7 @@ public class EnemyStats : MonoBehaviour
     //[SerializeField] private Transform playerPos;
     [SerializeField] private HealthScript healthScript;
     [SerializeField] private float enemyHealth;
-    private bool isDead;
+    public bool isDead { get; private set; }
 
     private void Awake()
     {
@@ -33,8 +33,9 @@ public class EnemyStats : MonoBehaviour
 
     public void UpdateHealth(float damage)
     {
-        healthScript.SetSliderVal(healthScript.m_Slider.value - damage);
-        if (healthScript.m_Slider.value <= 0)
+        enemyHealth -= damage;
+        healthScript.UpdateSlider(enemyHealth);
+        if (enemyHealth <= 0)
             isDead = true;
     }
 
