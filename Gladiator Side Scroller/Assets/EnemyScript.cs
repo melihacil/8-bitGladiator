@@ -24,5 +24,6 @@ public class EnemyScript : MonoBehaviour
         Debug.Log("Damaging");
         animator.SetTrigger("Hurt");
         rb.AddForce((transform.position - player.position) * 1.5f, ForceMode2D.Impulse);
+        GetComponentInParent<EnemyStats>().UpdateHealth(20);
     }
 }

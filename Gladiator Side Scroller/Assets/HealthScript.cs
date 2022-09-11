@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class HealthScript : MonoBehaviour
 {
-    public Slider m_Slider { get; private set; }
+    public Slider m_Slider;
 
     public void SetSliderVal(float health)
     {

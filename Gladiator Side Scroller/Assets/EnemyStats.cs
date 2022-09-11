@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(HealthScript))]
 public class EnemyStats : MonoBehaviour
 {
-    
+    //[SerializeField] private Transform playerPos;
     [SerializeField] private HealthScript healthScript;
     [SerializeField] private float enemyHealth;
     private bool isDead;
@@ -14,6 +14,7 @@ public class EnemyStats : MonoBehaviour
     private void Awake()
     {
         healthScript = GetComponent<HealthScript>();
+        
     }
 
     // Start is called before the first frame update
@@ -25,6 +26,7 @@ public class EnemyStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //transform.position = playerPos.position;
         if (isDead)
             Invoke(nameof(DestroyGameObject), 4f);
     }
