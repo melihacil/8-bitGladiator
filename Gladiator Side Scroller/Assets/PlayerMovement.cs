@@ -154,7 +154,8 @@ public class PlayerMovement : MonoBehaviour
             OnJumpUp();
         }
         Move();
-        Roll();
+        if(isGrounded)
+            Roll();
         Attack();
     }
 
@@ -266,16 +267,30 @@ public class PlayerMovement : MonoBehaviour
         {
             isReadyToRoll = false;
             animator.SetTrigger("Roll");
+           
             rb.AddForce(Vector2.right * rollSpeed * transform.forward.z, ForceMode2D.Impulse);
             Debug.Log(transform.forward);
-            Invoke(nameof(ResetRoll), 1.5f);
+            gameObject.layer = 9;//LayerMask.GetMask("PlayerRoll");
+            Invoke(nameof(ResetLayer), animator.GetCurrentAnimatorStateInfo(0).length);
+            Invoke(nameof(ResetRoll), animator.GetCurrentAnimatorStateInfo(0).length + 0.5f);
+
+            GetComponentInParent<PlayerStats>().isInvulnerable = true;
+
         }
     }
 
     private void ResetRoll()
     {
         isReadyToRoll = true;
+        
     }
+    private void ResetLayer()
+    {
+        GetComponentInParent<PlayerStats>().isInvulnerable = false;
+        gameObject.layer = 8;//LayerMask.GetMask("Player");
+
+    }
+
 
     private void TurnFunction()
     {
