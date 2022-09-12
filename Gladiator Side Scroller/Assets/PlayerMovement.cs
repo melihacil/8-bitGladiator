@@ -184,6 +184,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetTrigger("Attack" + attackState);
             attackButtonReleased = false;
             /*
+             * Old attack system where you can only hit one enemy at a time
             Debug.DrawRay(attackPos.position, transform.TransformDirection(Vector2.right) * 3f, Color.red);
             RaycastHit2D hit = Physics2D.Raycast(attackPos.position, transform.TransformDirection(Vector2.right), 3f);
             if (hit)
