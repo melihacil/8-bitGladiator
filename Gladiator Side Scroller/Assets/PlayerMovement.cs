@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private Vector2 groundCheckSize = new Vector2(0.5f,0.5f);
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private LayerMask enemyLayerMask;
     [SerializeField] private Transform groundCheckPos;
 
     //Time
@@ -52,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     //[SerializeField] private Animator slideAnimator;
     private float delayToIdle = 0.0f;
+
+
+
 
     private void Awake()
     {
@@ -179,6 +183,7 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetTrigger("Attack" + attackState);
             attackButtonReleased = false;
+            /*
             Debug.DrawRay(attackPos.position, transform.TransformDirection(Vector2.right) * 3f, Color.red);
             RaycastHit2D hit = Physics2D.Raycast(attackPos.position, transform.TransformDirection(Vector2.right), 3f);
             if (hit)
@@ -189,6 +194,14 @@ public class PlayerMovement : MonoBehaviour
                     Debug.Log("Attacking = " + hit.collider.gameObject.name);
                     hit.collider.gameObject.GetComponent<EnemyScript>().DamageBackwards(transform);
                 }
+            }
+
+            */
+            Collider2D[] collisions = Physics2D.OverlapCircleAll(attackPos.position, 0.5f, enemyLayerMask);
+            foreach( Collider2D collision in collisions)
+            {
+                Debug.Log("Attacking = " + collision.gameObject.name);
+                collision.gameObject.GetComponent<EnemyScript>().DamageBackwards(transform);
             }
 
 
