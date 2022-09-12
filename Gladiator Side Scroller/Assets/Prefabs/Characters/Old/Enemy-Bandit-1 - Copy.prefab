@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 6652751454753464002}
   - component: {fileID: 6652751454753464003}
   m_Layer: 7
-  m_Name: Enemy-Bandit-1
+  m_Name: Enemy-Bandit-1 - Copy
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
