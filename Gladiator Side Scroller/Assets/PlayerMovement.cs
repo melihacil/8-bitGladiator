@@ -137,7 +137,7 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector3(rb.velocity.x, 0, 0);
             animator.SetInteger("AnimState", 4);
-            Debug.Log("Double Jumping");
+            //Debug.Log("Double Jumping");
             Jump(3);
             readyDoubleJump = false;
             jumpButtonReleased = false;
@@ -211,6 +211,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isJumped && rb.velocity.y < 0)
+        {
+            if (collision.gameObject.name == "GroundObj-1")
+            {
+                //animator.set
+                //animator.SetTrigger("WallSlide");
+                Debug.Log("WallSliding");
+            }
+        }
+    }
     private void ResetAttack()
     {
         readyToAttack = true;
