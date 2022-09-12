@@ -12,6 +12,7 @@ public class EnemyScript : MonoBehaviour
 
     [Header("Enemy Movement")]
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float attackRange;
     [Header("Animation Variables")]
     private Animator animator;
 
@@ -37,12 +38,20 @@ public class EnemyScript : MonoBehaviour
         isPlayerInSightRange = Physics2D.OverlapCircle(rb.position, 14f, playerLayerMask);
         if (isPlayerInSightRange)
         {
-            Vector2 target = new Vector2(player.position.x, rb.position.y);
-            Vector2 newPosition = Vector2.MoveTowards(rb.position, target, moveSpeed * Time.fixedDeltaTime);
-            rb.MovePosition(newPosition);
-            animator.SetInteger("AnimState", 2);
-            //Debug.Log("Player in sight range");
-            //rb.AddForce(Vector2.right * moveSpeed, ForceMode2D.Force);
+            //Attack block
+            if (Vector2.Distance(rb.position, player.position) <= attackRange)
+            {
+                //Animation state equals to combat idle 
+                animator.SetInteger("AnimState", 1);
+            }
+            //Move towards player 
+            else
+            {
+                Vector2 target = new Vector2(player.position.x, rb.position.y);
+                Vector2 newPosition = Vector2.MoveTowards(rb.position, target, moveSpeed * Time.fixedDeltaTime);
+                rb.MovePosition(newPosition);
+                animator.SetInteger("AnimState", 2);
+            }
         }
         //Idle
         else
