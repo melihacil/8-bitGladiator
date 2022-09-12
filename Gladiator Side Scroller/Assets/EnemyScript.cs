@@ -13,9 +13,10 @@ public class EnemyScript : MonoBehaviour
     [Header("Enemy Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackRange;
+
     [Header("Animation Variables")]
     private Animator animator;
-
+    [SerializeField] private Transform attackPos;
 
 
     private bool isPlayerInSightRange;
@@ -42,6 +43,7 @@ public class EnemyScript : MonoBehaviour
             if (Vector2.Distance(rb.position, player.position) <= attackRange)
             {
                 //Animation state equals to combat idle 
+                //Attack();
                 animator.SetInteger("AnimState", 1);
             }
             //Move towards player 
@@ -77,4 +79,15 @@ public class EnemyScript : MonoBehaviour
         //rb.AddForce((transform.position - player.position) * 1.5f, ForceMode2D.Impulse);
         GetComponentInParent<EnemyStats>().UpdateHealth(20);
     }
+
+    public void Attack()
+    {
+        Collider2D collision = Physics2D.OverlapCircle(attackPos.position, 0.4f, playerLayerMask);
+        if (collision != null)
+        {
+            Debug.Log(collision.gameObject.name);
+        }
+    }
+
+
 }
