@@ -9,7 +9,6 @@ public class EnemyStats : MonoBehaviour
     //[SerializeField] private Transform playerPos;
     [SerializeField] private HealthScript healthScript;
     [SerializeField] private float enemyHealth;
-    public bool isDead { get; private set; }
 
     private void Awake()
     {
@@ -27,8 +26,7 @@ public class EnemyStats : MonoBehaviour
     void Update()
     {
         //transform.position = playerPos.position;
-        if (isDead)
-            Invoke(nameof(DestroyGameObject), 4f);
+
     }
 
     public void UpdateHealth(float damage)
@@ -36,7 +34,12 @@ public class EnemyStats : MonoBehaviour
         enemyHealth -= damage;
         healthScript.UpdateSlider(enemyHealth);
         if (enemyHealth <= 0)
-            isDead = true;
+        {
+            Invoke(nameof(DestroyGameObject), 4f);
+            GetComponent<BoxCollider2D>().enabled = false;
+            GetComponent<EnemyScript>().DeathState();
+            GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;
+        }
     }
 
 
