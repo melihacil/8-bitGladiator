@@ -20,7 +20,7 @@ public class EnemyScript : MonoBehaviour
 
     private bool isPlayerInSightRange;
     private bool isDead;
-
+    private bool isInterrupted = false;
 
     public void Awake()
     {
@@ -33,7 +33,7 @@ public class EnemyScript : MonoBehaviour
 
     private void FixedUpdate()
     {     
-        if (isDead)
+        if (isDead || isInterrupted)
             return;
         isPlayerInSightRange = Physics2D.OverlapCircle(rb.position, 14f, playerLayerMask);
         if (isPlayerInSightRange)
@@ -66,11 +66,15 @@ public class EnemyScript : MonoBehaviour
         animator.SetTrigger("Death");
     }
 
+    public void ChangeInterruption()
+    {
+        isInterrupted = !isInterrupted;
+    }
     public void DamageBackwards(Transform player)
     {
         Debug.Log("Damaging");
         animator.SetTrigger("Hurt");
-        rb.AddForce((transform.position - player.position) * 1.5f, ForceMode2D.Impulse);
+        //rb.AddForce((transform.position - player.position) * 1.5f, ForceMode2D.Impulse);
         GetComponentInParent<EnemyStats>().UpdateHealth(20);
     }
 }
