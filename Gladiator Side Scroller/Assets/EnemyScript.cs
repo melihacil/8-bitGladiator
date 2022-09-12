@@ -22,6 +22,8 @@ public class EnemyScript : MonoBehaviour
     private bool isPlayerInSightRange;
     private bool isDead;
     private bool isInterrupted = false;
+    private bool hasAttacked = false;
+
 
     public void Awake()
     {
@@ -45,6 +47,12 @@ public class EnemyScript : MonoBehaviour
                 //Animation state equals to combat idle 
                 //Attack();
                 animator.SetInteger("AnimState", 1);
+                if (!hasAttacked)
+                {
+                    animator.SetTrigger("Attack");
+                    hasAttacked = true;
+                    Invoke(nameof(ResetAttack), 1f);
+                }
             }
             //Move towards player 
             else
@@ -89,5 +97,8 @@ public class EnemyScript : MonoBehaviour
         }
     }
 
-
+    private void ResetAttack()
+    {
+        hasAttacked = false;
+    }
 }
