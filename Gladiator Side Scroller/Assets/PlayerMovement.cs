@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 
@@ -54,7 +55,8 @@ public class PlayerMovement : MonoBehaviour
     private Animator animator;
     //[SerializeField] private Animator slideAnimator;
     private float delayToIdle = 0.0f;
-
+    private int attackState = 1;
+    private bool isReadyToRoll = true;
 
 
 
@@ -172,7 +174,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private int attackState = 1;
+
 
     private void Attack()
     {
@@ -260,13 +262,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void Roll()
     {
-        if (playerInput.rollInput)
+        if (playerInput.rollInput && isReadyToRoll)
         {
+            isReadyToRoll = false;
             animator.SetTrigger("Roll");
             rb.AddForce(Vector2.right * rollSpeed * transform.forward.z, ForceMode2D.Impulse);
             Debug.Log(transform.forward);
+            Invoke(nameof(ResetRoll), 1.5f);
         }
     }
+
+    private void ResetRoll()
+    {
+        isReadyToRoll = true;
+    }
+
     private void TurnFunction()
     {
         /*
