@@ -236,7 +236,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
     - target: {fileID: 7339897578889832467, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: rollSpeed
-      value: 15
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 7339897578889832467, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: groundCheckPos
