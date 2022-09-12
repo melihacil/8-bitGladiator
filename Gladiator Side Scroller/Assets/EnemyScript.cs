@@ -13,6 +13,7 @@ public class EnemyScript : MonoBehaviour
     [Header("Enemy Movement")]
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackRange;
+    [SerializeField] private float attackRadius;
 
     [Header("Animation Variables")]
     private Animator animator;
@@ -90,7 +91,7 @@ public class EnemyScript : MonoBehaviour
 
     public void Attack()
     {
-        Collider2D collision = Physics2D.OverlapCircle(attackPos.position, 0.4f, playerLayerMask);
+        Collider2D collision = Physics2D.OverlapCircle(attackPos.position, attackRadius, playerLayerMask);
         if (collision != null)
         {
             Debug.Log(collision.gameObject.name);
