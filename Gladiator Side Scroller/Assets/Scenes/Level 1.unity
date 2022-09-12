@@ -238,6 +238,10 @@ PrefabInstance:
       propertyPath: groundCheckPos
       value: 
       objectReference: {fileID: 527249252}
+    - target: {fileID: 7339897578889832467, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: enemyLayerMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 7339897578889832558, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_Layer
       value: 8
@@ -253,6 +257,10 @@ PrefabInstance:
     - target: {fileID: 7339897579909962529, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339897579909962530, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.903
       objectReference: {fileID: 0}
     - target: {fileID: 8724961308680341554, guid: f9aceb07edad28344b9b4b319092a746, type: 3}
       propertyPath: m_SortingLayer
