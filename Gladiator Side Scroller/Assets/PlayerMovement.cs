@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float acceleration;
     [SerializeField] private float deceleration;
     [SerializeField] private float velPower;
+    [SerializeField] private float rollSpeed;
     private float speed;
     private float targetSpeed;
     private float accelerationRate;
@@ -151,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
             OnJumpUp();
         }
         Move();
+        Roll();
         Attack();
     }
 
@@ -211,6 +213,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (isJumped && rb.velocity.y < 0)
@@ -223,6 +227,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    */
     private void ResetAttack()
     {
         readyToAttack = true;
@@ -253,7 +258,15 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
+    private void Roll()
+    {
+        if (playerInput.rollInput)
+        {
+            animator.SetTrigger("Roll");
+            rb.AddForce(Vector2.right * rollSpeed * transform.forward.z, ForceMode2D.Impulse);
+            Debug.Log(transform.forward);
+        }
+    }
     private void TurnFunction()
     {
         /*
