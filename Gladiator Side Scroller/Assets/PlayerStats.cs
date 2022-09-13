@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float healthVal;
 
     public bool isInvulnerable;
-
+    public bool isDead;
 
     private void Awake()
     {
@@ -28,6 +28,12 @@ public class PlayerStats : MonoBehaviour
             return;
         healthVal -= damage;
         health.UpdateSlider(healthVal);
+        if (healthVal <= 0)
+        {
+            GetComponentInChildren<PlayerMovement>().Death();
+            isInvulnerable = true;
+            isDead = true;
+        }
 
     }
 

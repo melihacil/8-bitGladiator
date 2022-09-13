@@ -124,9 +124,6 @@ public class EnemyScript : MonoBehaviour
         {
             Debug.Log(collision.gameObject.name);
             collision.gameObject.GetComponentInParent<PlayerStats>().DamagePlayer(20);
-
-
-
         }
     }
 

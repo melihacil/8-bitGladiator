@@ -231,6 +231,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     */
+
+
+
+    public void Death()
+    {
+        animator.SetTrigger("Death");
+    }
     private void ResetAttack()
     {
         readyToAttack = true;
