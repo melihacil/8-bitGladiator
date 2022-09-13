@@ -10,7 +10,6 @@ public class PlayerInput : MonoBehaviour
     public bool attackInput { get; private set; }
 
     public bool rollInput { get; private set; } 
-    public bool pauseInput { get; private set; }
     private void Update()
     {
 
@@ -21,7 +20,6 @@ public class PlayerInput : MonoBehaviour
         attackInput = Input.GetButtonDown("Fire1") || Input.GetButton("Fire1");
         rollInput = Input.GetButton("Fire2") || Input.GetButtonDown("Fire2");
 
-        pauseInput = Input.GetButtonDown("Cancel");
 
 
     }
