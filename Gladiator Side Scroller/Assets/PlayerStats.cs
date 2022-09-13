@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-
+    //Script to hold player values 
     private HealthScript health;
     [SerializeField] private float healthVal;
     [SerializeField] private GameObject deathPanel;
