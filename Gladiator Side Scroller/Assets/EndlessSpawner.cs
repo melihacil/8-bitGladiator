@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class EndlessSpawner : MonoBehaviour
 {
-
+    //EndlessSpawner to be used in endless levels 
+    //This scripts is pretty basic and can be upgraded easily to become a more complex one
 
     [SerializeField] private GameObject m_gameObject;
     [SerializeField] private Text scoreText;
