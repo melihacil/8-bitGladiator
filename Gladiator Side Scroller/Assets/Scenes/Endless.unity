@@ -2289,6 +2289,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_gameObject: {fileID: 7510129599550542511, guid: 008d8fdf5131b5b4495ba8fbbaaff23b, type: 3}
+  scoreText: {fileID: 1298769238}
   m_SpawnPoint_1: {fileID: 1983797540}
   m_SpawnPoint_2: {fileID: 771950700}
 --- !u!1 &1071211960

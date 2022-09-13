@@ -40,7 +40,7 @@ public class EnemyStats : MonoBehaviour
             {
                 FindObjectOfType<EndlessSpawner>().ReduceCount();
             }
-            Invoke(nameof(DestroyGameObject), 4f);
+            Invoke(nameof(DestroyGameObject), 15f);
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<EnemyScript>().DeathState();
             GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Static;

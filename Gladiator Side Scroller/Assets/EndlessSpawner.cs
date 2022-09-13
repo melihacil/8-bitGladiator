@@ -16,6 +16,7 @@ public class EndlessSpawner : MonoBehaviour
 
 
     private bool alreadySpawned = false;
+    private int enemyCount = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,8 @@ public class EndlessSpawner : MonoBehaviour
 
     public void ReduceCount()
     {
+        enemyCount++;
+        scoreText.text = "Score : " + enemyCount.ToString();
         SpawnedCount--;
     }
 
