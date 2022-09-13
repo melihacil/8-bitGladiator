@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerInput : MonoBehaviour
 {
+    //Player input class that gets inputs 
+    //Used button functions to make it compatible easier with controller
     public Vector2 movementInput { get; private set; }
     public bool jumpInput { get; private set; }
 
