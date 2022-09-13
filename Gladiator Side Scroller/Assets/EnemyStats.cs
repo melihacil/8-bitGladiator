@@ -9,6 +9,7 @@ public class EnemyStats : MonoBehaviour
     //[SerializeField] private Transform playerPos;
     [SerializeField] private HealthScript healthScript;
     [SerializeField] private float enemyHealth;
+    [SerializeField] private bool isEndless = false;
 
     private void Awake()
     {
@@ -35,6 +36,10 @@ public class EnemyStats : MonoBehaviour
         healthScript.UpdateSlider(enemyHealth);
         if (enemyHealth <= 0)
         {
+            if (isEndless)
+            {
+                FindObjectOfType<EndlessSpawner>().ReduceCount();
+            }
             Invoke(nameof(DestroyGameObject), 4f);
             GetComponent<BoxCollider2D>().enabled = false;
             GetComponent<EnemyScript>().DeathState();

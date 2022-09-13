@@ -31,6 +31,12 @@ public class EndlessSpawner : MonoBehaviour
         }
     }
 
+    public void ReduceCount()
+    {
+        SpawnedCount--;
+    }
+
+
     private void Spawn()
     {
         Instantiate(m_gameObject, m_SpawnPoint_1.position, Quaternion.identity);
