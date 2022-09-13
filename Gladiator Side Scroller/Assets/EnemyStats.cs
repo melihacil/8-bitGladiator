@@ -29,7 +29,7 @@ public class EnemyStats : MonoBehaviour
         //transform.position = playerPos.position;
 
     }
-
+    //Updates enemy health and checks if it has died
     public void UpdateHealth(float damage)
     {
         enemyHealth -= damage;
