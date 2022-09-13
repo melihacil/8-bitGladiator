@@ -19,6 +19,7 @@ public class EnemyScript : MonoBehaviour
     private Animator animator;
     [SerializeField] private Transform attackPos;
 
+
     private float distance;
     private bool isPlayerInSightRange;
     private bool isDead;
@@ -33,6 +34,7 @@ public class EnemyScript : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         animator = GetComponent<Animator>();
+        player = FindObjectOfType<PlayerMovement>().gameObject.transform;
     }
 
     private void Update()
@@ -97,6 +99,7 @@ public class EnemyScript : MonoBehaviour
 
     public void DeathState()
     {
+
         isDead = true;
         animator.SetTrigger("Death");
     }

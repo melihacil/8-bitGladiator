@@ -4,6 +4,17 @@ using UnityEngine;
 
 public class EndlessSpawner : MonoBehaviour
 {
+
+
+    [SerializeField] private GameObject m_gameObject; 
+
+    private int SpawnedCount = 0;
+
+    [SerializeField] private Transform m_SpawnPoint_1;
+    [SerializeField] private Transform m_SpawnPoint_2;
+
+
+    private bool alreadySpawned = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,6 +24,19 @@ public class EndlessSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (SpawnedCount < 10 && !alreadySpawned)
+        {
+
+            Invoke(nameof(Spawn), 3f);
+        }
     }
+
+    private void Spawn()
+    {
+        Instantiate(m_gameObject, m_SpawnPoint_1.position, Quaternion.identity);
+        Instantiate(m_gameObject, m_SpawnPoint_2.position, Quaternion.identity);
+        SpawnedCount += 2;
+        alreadySpawned = true;
+    }
+
 }
