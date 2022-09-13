@@ -7,6 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    //Game manager
+    // Dontdestroyonload can be used but not implemented here
+
 
     [SerializeField] private GameObject pausePanel;
 
