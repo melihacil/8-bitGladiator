@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
 
     public bool pauseInput;
-
+    private bool paused = false;
     private void Awake()
     {
         //playerInput = GetComponent<PlayerInput>();
@@ -32,17 +32,29 @@ public class GameManager : MonoBehaviour
         pauseInput = Input.GetButtonDown("Cancel");
         if (pauseInput)
         {
-            pausePanel.SetActive(true);
-            PauseGame();
 
+            if (paused)
+            {
+                ResumeGame();
+            }
+
+            else
+            {
+                PauseGame();
+                pausePanel.SetActive(true);
+            }
         }
     }
 
-    private void LoadEndless()
+    public void LoadEndless()
     {
         SceneManager.LoadScene(1);
     }
 
+    public void LoadMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 
     public void ResumeGame() { Time.timeScale = 1; pausePanel.SetActive(false); }
     public void PauseGame() { Time.timeScale = 0; }
