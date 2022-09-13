@@ -14,6 +14,7 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float attackRange;
     [SerializeField] private float attackRadius;
+    [SerializeField] private float detectRadius;
 
     [Header("Animation Variables")]
     private Animator animator;
@@ -65,7 +66,7 @@ public class EnemyScript : MonoBehaviour
     {     
         if (isDead || isInterrupted)
             return;
-        isPlayerInSightRange = Physics2D.OverlapCircle(rb.position, 14f, playerLayerMask);
+        isPlayerInSightRange = Physics2D.OverlapCircle(rb.position, detectRadius, playerLayerMask);
         if (isPlayerInSightRange)
         {
             //Attack block
