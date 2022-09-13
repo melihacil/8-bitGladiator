@@ -19,11 +19,13 @@ public class EnemyScript : MonoBehaviour
     private Animator animator;
     [SerializeField] private Transform attackPos;
 
-
+    private float distance;
     private bool isPlayerInSightRange;
     private bool isDead;
     private bool isInterrupted = false;
     private bool hasAttacked = false;
+
+    private bool enemyForward = true;
 
 
     public void Awake()
@@ -33,7 +35,29 @@ public class EnemyScript : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    private void Update()
+    {
+        distance = rb.position.x - player.position.x;
+        if (distance != 0)
+        {
+            CheckDirection(distance > 0);
+            
+        }
+    }
 
+
+    private void CheckDirection(bool direction)
+    {
+        if (direction != enemyForward)
+        {
+            Turn();
+        }
+    }
+    private void Turn()
+    {
+        transform.forward *= -1;
+        enemyForward = !enemyForward;
+    }
 
     private void FixedUpdate()
     {     
