@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//This script is not used anymore
+
 public class BasicEnemyScript : MonoBehaviour
 {
     // Start is called before the first frame update
