@@ -109,6 +109,7 @@ public class EnemyScript : MonoBehaviour
     {
         isInterrupted = !isInterrupted;
     }
+    //Adds a damage backwards
     public void DamageBackwards(Transform player)
     {
         Debug.Log("Damaging");
