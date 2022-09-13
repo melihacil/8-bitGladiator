@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EndlessSpawner : MonoBehaviour
 {
 
 
-    [SerializeField] private GameObject m_gameObject; 
-
+    [SerializeField] private GameObject m_gameObject;
+    [SerializeField] private Text scoreText;
     private int SpawnedCount = 2;
-
+    
     [SerializeField] private Transform m_SpawnPoint_1;
     [SerializeField] private Transform m_SpawnPoint_2;
 

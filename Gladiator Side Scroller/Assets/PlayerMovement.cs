@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     private int attackState = 1;
     private bool isReadyToRoll = true;
 
-
+    private bool isDead = false;
 
     private void Awake()
     {
@@ -111,6 +111,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (isDead)
+            return;
         animator.SetFloat("AirSpeedY", rb.velocity.y);
         //Block for checking gravity
         if (rb.velocity.y < 0)
@@ -236,6 +238,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Death()
     {
+        isDead = true;
         animator.SetTrigger("Death");
     }
     private void ResetAttack()

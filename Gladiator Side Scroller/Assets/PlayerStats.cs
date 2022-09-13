@@ -7,12 +7,15 @@ public class PlayerStats : MonoBehaviour
 
     private HealthScript health;
     [SerializeField] private float healthVal;
+    [SerializeField] private GameObject deathPanel;
+
 
     public bool isInvulnerable;
-    public bool isDead;
 
     private void Awake()
     {
+        if (deathPanel != null)
+            deathPanel.SetActive(false);
         health = GetComponent<HealthScript>();
     }
 
@@ -30,9 +33,10 @@ public class PlayerStats : MonoBehaviour
         health.UpdateSlider(healthVal);
         if (healthVal <= 0)
         {
+            if (deathPanel != null)
+                deathPanel.SetActive(true);
             GetComponentInChildren<PlayerMovement>().Death();
             isInvulnerable = true;
-            isDead = true;
         }
 
     }
